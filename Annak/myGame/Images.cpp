@@ -129,7 +129,7 @@ void Images::CallBackFunc(int event, int x, int y, int flags, void* userdata)
     }
 }
 
-void Images::show(World world)
+void Images::show(World* world)
 {
     img = Mat::zeros(512, 700, CV_8UC3);
     namedWindow("World Map", WINDOW_AUTOSIZE);
@@ -164,7 +164,7 @@ Point generateRandomTarget(int x, int y, int maxX, int maxY)
     return Point(X, Y);
 }
 
-void Images::moveEntities(World world)
+void Images::moveEntities(World* world)
 {
     //for (auto& vehicle : vehicles) {
     //    if (vehicle.getCurrentLoacstion() == vehicle.getTarget()) {
@@ -243,7 +243,7 @@ void Images::moveEntities(World world)
             vehicle.setTarget(newTarget);
         }
         Point currentLocation = vehicle.getCurrentLoacstion();
-        world.destroy(vehicle.getType(), vehicle.getLocation().first, vehicle.getLocation().second);
+        world->destroy(vehicle.getType(), vehicle.getLocation().first, vehicle.getLocation().second);
         Point target = vehicle.getTarget();
         Point direction = target - currentLocation;
         double distance = norm(direction);
@@ -264,20 +264,20 @@ void Images::moveEntities(World world)
         p.first = newPosition.x/9.6;
         p.second = newPosition.y / 9.6;
         vehicle.setLocation(p);
-        world.manufacture(vehicle.getType(), p.first, p.second);
+        world->manufacture(vehicle.getType(), p.first, p.second);
 
         //}
     }
 }
 
-void Images::drawWorld(World worldMap)
+void Images::drawWorld(World* worldMap)
 {
     //vector<vector<int>> worldMap = readMapFromFile("input.txt");
 
     map<int, Mat> images = loadImages("C:\\האחסון שלי\\תכנות\\תשפד\\mobileye embedded\\Annak\\images\\TILES\\TILES");
 
-    int mapWidth = worldMap.getTiles()[0].size();
-    int mapHeight = worldMap.getTiles().size();
+    int mapWidth = worldMap->getTiles()[0].size();
+    int mapHeight = worldMap->getTiles().size();
     initialize(mapHeight, mapWidth, images);
     int cellSize = images[1].rows;
     int gridDivisions = 5;
@@ -285,7 +285,7 @@ void Images::drawWorld(World worldMap)
 
     for (int i = 0; i < mapHeight; ++i) {
         for (int j = 0; j < mapWidth; ++j) {
-            int tileType = worldMap.getTiles()[i][j].getType();
+            int tileType = worldMap->getTiles()[i][j].getType();
             Mat tile = images[tileType];
             Rect roi(j * tile.cols, i * tile.rows, tile.cols, tile.rows);
             tile.copyTo(mapImage(roi));

@@ -3,6 +3,7 @@
 using namespace std;
 
 vector<int> World::resource = { 0,0,0,0 };
+World* World::instance = nullptr;
 
 World::World(const vector<vector<string>>& data)
 {
@@ -10,6 +11,13 @@ World::World(const vector<vector<string>>& data)
     rainWool = 0;
     rainWood = 0;
 	fill_grid(data);
+}
+
+World* World::getInstance(const vector< vector<string> >& data) {
+    if (instance == nullptr) {
+        instance = new World(data);
+    }
+    return instance;
 }
 
 void World::fill_grid(const vector<vector<string>>& data)

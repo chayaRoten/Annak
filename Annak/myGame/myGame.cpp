@@ -18,18 +18,18 @@ int main()
     Input myInput(infile);
 	unordered_map<int, string> tails = ReadJson::getTiles();
 	myInput.parse_and_store();
-	World myWorld(myInput.world->data);
+    World* world = World::getInstance(myInput.world->data);
 
-    Images::drawWorld(myWorld);
+    Images::drawWorld(world);
 
     Game game;
-    game.start(myInput, myWorld);
-    game.steps(myInput, myWorld);
+    game.start(myInput, world);
+    game.steps(myInput, world);
 
-    Images::moveEntities(myWorld);
-    Images::show(myWorld);
+    Images::moveEntities(world);
+    Images::show(world);
 
-    game.asserts(myInput, myWorld);
+    game.asserts(myInput, world);
 
 
 	//for (shared_ptr<Command> start : myInput.start) {

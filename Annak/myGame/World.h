@@ -23,10 +23,15 @@ private:
     int rainWool;
     int rainWood;
 
+    static World* instance;
+
+    World(const vector< vector<string> >& data);
+
 public:
     static vector<int> resource;
     ReadJson readJSON;
-    World(const vector< vector<string> >& data);
+    ~World() {}
+    static World* getInstance(const vector< vector<string> >& data);
     void fill_grid(const vector< vector<string> >& data);
     void setGrid(vector<vector<Coordination>>data) { grid = data; };
     vector<vector<Coordination>>& getGrid() { return grid; };

@@ -5,8 +5,8 @@
 
 class Game {
 public:
-    void start(Input& myInput, World& myWorld);
-    void steps(Input& myInput, World& myWorld);
-    void asserts(Input& myInput, World& myWorld);
+    void start(Input& myInput, World* myWorld);
+    void steps(Input& myInput, World* myWorld);
+    void asserts(Input& myInput, World* myWorld);
 };
 

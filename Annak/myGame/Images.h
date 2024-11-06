@@ -21,12 +21,12 @@ public:
     static vector<vector<int>> readMapFromFile(const string& filename);
     static map<int, Mat> loadImages(const string& folderPath);
     static void drawGrid(Mat& image, int cellSize, int gridDivisions);
-    static void drawWorld(World world);
+    static void drawWorld(World* world);
     static void build(string name, int x, int y, Mat& mapWorld);
     static Mat initializeMapImage(int mapHeight, int mapWidth, const map<int, Mat>& images);
     static void initialize(int mapHeight, int mapWidth, const map<int, Mat>& images);
-    static void show(World world);
-    static void moveEntities(World world);
+    static void show(World* world);
+    static void moveEntities(World* world);
     static void setVehicles(Vehicle v) { vehicles.push_back(v); }
     static vector<Vehicle> getVehicles() { return vehicles; }
     static void CallBackFunc(int event, int x, int y, int flags, void* userdata);
