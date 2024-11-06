@@ -1,0 +1,30 @@
++World
+1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 4 4 4 4 4 4 4 4
+1 1 1 1 2 1 4 4 4 4 4 4 4 4
+1 1 1 2 2 1 4 4 4 4 4 4 4 4
+1 1 2 2 2 1 4 4 4 4 4 4 4 5
++Start
+Build Village 1 1
+Build City 50 1
+Build Road 1 11
+Build Road 1 16
+Build Road 1 21
+MakeEmpty 1 1
+Resource 10 Wood 1 1
+Manufacture Car 50 5
+Manufacture Car 30 10
+Manufacture Truck 32 2
+Manufacture People 10 18
+Manufacture People 10 21
+Resource 1 Wood 32 2
++Input
+Select 22 2
+Deposit 1 1
+Wait 1000
+Select 1 1
++Asserts
+SelectedResource
